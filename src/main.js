@@ -1,16 +1,14 @@
-import { createApp } from 'vue'
+// main.js
+import { createApp } from 'vue';
+import App from './App.vue';
 import PrimeVue from 'primevue/config';
+import router from './router';
 import 'primevue/resources/themes/saga-blue/theme.css';
 import 'primevue/resources/primevue.min.css';
 import 'primeicons/primeicons.css';
-import "primeflex/primeflex.css";
-// import './style.css'
+import './assets/styles.css';
 
-import App from './App.vue';
-import router from "./router";
-
-createApp(App)
-    .use(router)
-    .use(PrimeVue, { ripple: true})
-    .mount('#app')
-
+const app = createApp(App);
+app.use(PrimeVue);
+app.use(router);
+app.mount('#app');

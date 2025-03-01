@@ -1,38 +1,63 @@
-import { createRouter, createWebHistory } from "vue-router";
-
-import Home from "../components/Home.vue";
-import Users from "../components/Users/Users.vue";
-import UsersAdd from "../components/Users/UsersAdd.vue";
-import UsersEdit from "../components/Users/UsersEdit.vue";
-import UsersDelete from "../components/Users/UsersDelete.vue";
-import Categories from "../components/Categories/Categories.vue";
-import CategoriesAdd from "../components/Categories/CategoriesAdd.vue";
-import CategoriesEdit from "../components/Categories/CategoriesEdit.vue";
-import CategoriesDelete from "../components/Categories/CategoriesDelete.vue";
-import Expenses from "../components/Expenses/Expenses.vue";
-import ExpensesAdd from "../components/Expenses/ExpensesAdd.vue";
-import ExpensesEdit from "../components/Expenses/ExpensesEdit.vue";
-import ExpensesDelete from "../components/Expenses/ExpensesDelete.vue";
+// router/index.js
+import { createRouter, createWebHistory } from 'vue-router';
+import Home from '../views/Home.vue';
+import About from '../views/About.vue';
+import Features from '../views/Features.vue';
+import SignUp from '../views/SignUp.vue';
+import Login from '../views/Login.vue';
+import Dashboard from '../views/Dashboard.vue';
 
 const routes = [
-    { path: "/", name: "Home", component: Home, },
-    { path: "/users", name: "Users", component: Users, },
-    { path: "/usersadd", name: "UsersAdd", component: UsersAdd, },
-    { path: "/usersedit/:userId", name: "UsersEdit", component: UsersEdit, },
-    { path: "/usersdelete/:userId", name: "UsersDelete", component: UsersDelete, },
-    { path: "/categories", name: "Categories", component: Categories, },
-    { path: "/categoriesadd", name: "CategoriesAdd", component: CategoriesAdd, },
-    { path: "/categoriesedit/:categoryId", name: "CategoriesEdit", component: CategoriesEdit, },
-    { path: "/categoriesdelete/:categoryId", name: "CategoriesDelete", component: CategoriesDelete, },    
-    { path: "/expenses", name: "Expenses", component: Expenses, },
-    { path: "/expensesadd", name: "ExpensesAdd", component: ExpensesAdd, },
-    { path: "/expensesedit/:expenseId", name: "ExpensesEdit", component: ExpensesEdit, },
-    { path: "/expensesdelete/:expenseId", name: "ExpensesDelete", component: ExpensesDelete, },    
-  ];
+  { 
+    path: '/', 
+    name: 'Home',
+    component: Home 
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
+  },
+  {
+    path: '/features',
+    name: 'Features',
+    component: Features
+  },
+  {
+    path: '/signup',
+    name: 'SignUp',
+    component: SignUp
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    component: Login
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
+  {
+    path: '/notifications',
+    name: 'Notifications',
+    component: () => import('../views/Notifications.vue')
+  },
+  {
+    path: '/schedule',
+    name: 'Schedule',
+    component: () => import('../views/Schedule.vue')
+  },
+  {
+    path: '/users',
+    name: 'Users',
+    component: () => import('../views/Users.vue')
+  }
+];
 
-const router = createRouter({
-    history: createWebHistory(),
-    routes,
+const router = createRouter({ 
+  history: createWebHistory(), 
+  routes 
 });
 
 export default router;

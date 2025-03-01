@@ -1,51 +1,60 @@
-<script setup>
-import Menubar from "primevue/menubar";
-import { useRouter } from 'vue-router';
-import router from "./router";
-import { ref } from "vue";
-
-const items = [
-        {
-          label: "Home",
-          icon: "pi pi-fw pi-home",
-          command: () => {
-            router.push('/');
-          }
-        },
-        {
-          label: "Users",
-          icon: "pi pi-fw pi-list",
-          route: "/users",
-          command: () => {
-            router.push('/users');
-          }
-        },
-        {
-          label: "Categories",
-          icon: "pi pi-fw pi-list",
-          route: "/categories",
-          command: () => {
-            router.push('/categories');
-          }
-        },
-        {
-          label: "Expenses",
-          icon: "pi pi-fw pi-list",
-          route: "/expenses",
-          command: () => {
-            router.push('/expenses');
-          }
-        }
-      ];
-</script>
-
+// App.vue
 <template>
-    <div>
-        <Menubar :model="items" />
-        <router-view></router-view>
-    </div>
-
+  <div class="app-container">
+    <template v-if="!isDashboardRoute">
+      <Sidebar />
+      <div class="main-content">
+        <Topbar />
+        <router-view />
+      </div>
+    </template>
+    <template v-else>
+      <router-view />
+    </template>
+  </div>
 </template>
 
-<style scoped>
+<script>
+import Sidebar from './components/Sidebar.vue';
+import Topbar from './components/Topbar.vue';
+
+export default {
+  components: { Sidebar, Topbar },
+  computed: {
+    isDashboardRoute() {
+      return this.$route.path.startsWith('/dashboard') ||
+             this.$route.path.startsWith('/notifications') ||
+             this.$route.path.startsWith('/schedule') ||
+             this.$route.path.startsWith('/users');
+    }
+  }
+};
+</script>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.app-container {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  overflow: hidden;
+}
+
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
 </style>
