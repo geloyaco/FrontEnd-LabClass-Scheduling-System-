@@ -110,7 +110,7 @@ export default {
 
 h1 {
   text-align: center;
-  color: #E91E63;
+  color: #DD385A;
   font-size: 1.8rem;
   margin-bottom: 1.5rem;
 }
@@ -142,23 +142,24 @@ input {
 
 input:focus {
   outline: none;
-  border-color: #E91E63;
+  border-color: #DD385A;
 }
 
 .signup-button {
-  background-color: #E91E63;
+  background-color: #DD385A;
   color: white;
-  padding: 0.8rem;
   border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  width: 100%;
+  font-weight: 500;
+  transition: background-color 0.2s;
 }
 
 .signup-button:hover {
-  background-color: #D81B60;
+  background-color: #c4314f;
 }
 
 .divider {
@@ -207,13 +208,14 @@ input:focus {
 
 .login-link {
   text-align: center;
-  color: #666;
+  color: #DD385A;
+  text-decoration: none;
   font-size: 0.9rem;
   margin-top: 0.5rem;
 }
 
 .login-link a {
-  color: #E91E63;
+  color: #DD385A;
   text-decoration: none;
   font-weight: 500;
 }

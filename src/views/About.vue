@@ -62,7 +62,7 @@ export default {
 
 h1 {
   font-size: clamp(2rem, 4vw, 2.5rem);
-  color: #E91E63;
+  color: #DD385A;
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
@@ -80,7 +80,7 @@ h1 {
 
 .users-section h2 {
   font-size: 1.8rem;
-  color: #E91E63;
+  color: #DD385A;
   margin-bottom: 2rem;
 }
 

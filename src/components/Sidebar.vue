@@ -22,7 +22,7 @@ export default {
 .sidebar {
   width: 80px;
   height: 100vh;
-  background-color: E91E63;
+  background-color: #DD385A;
   border-right: 1px solid #eee;
   display: flex;
   flex-direction: column;

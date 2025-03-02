@@ -156,20 +156,20 @@ input:focus {
 }
 
 .login-button {
-  background-color: #E91E63;
+  background-color: #DD385A;
   color: white;
-  padding: 0.8rem;
   border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  margin-top: 0.5rem;
+  width: 100%;
+  font-weight: 500;
+  transition: background-color 0.2s;
 }
 
 .login-button:hover {
-  background-color: #D81B60;
+  background-color: #c4314f;
 }
 
 .divider {
@@ -218,13 +218,14 @@ input:focus {
 
 .signup-link {
   text-align: center;
-  color: #666;
+  color: #DD385A;
+  text-decoration: none;
   font-size: 0.9rem;
   margin-top: 0.5rem;
 }
 
 .signup-link a {
-  color: #E91E63;
+  color: #DD385A;
   text-decoration: none;
   font-weight: 500;
 }

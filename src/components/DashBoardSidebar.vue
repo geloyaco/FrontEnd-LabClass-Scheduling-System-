@@ -50,7 +50,7 @@ export default {
 
 <style scoped>
 .sidebar {
-  background-color: #E91E63;
+  background-color: #DD385A;
   height: 100vh;
   width: 70px;
   position: fixed;
@@ -59,6 +59,7 @@ export default {
   transition: width 0.3s ease;
   overflow: hidden;
   z-index: 1000;
+  font-family: 'Inter', sans-serif;
 }
 
 .sidebar.expanded {
@@ -101,6 +102,7 @@ export default {
   transition: background-color 0.2s;
   white-space: nowrap;
   font-size: 1rem;
+  font-family: 'Inter', sans-serif;
 }
 
 .nav-link:hover, .nav-link.active {

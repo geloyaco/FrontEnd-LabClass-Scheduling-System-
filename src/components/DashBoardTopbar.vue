@@ -5,7 +5,7 @@
         <img src="../assets/uic-logo-3.svg" alt="UIC Logo" class="logo" />
         <img src="../assets/CCS-logo.svg" alt="CCS Logo" class="logo" />
       </div>
-      <h1>Dashboard</h1>
+      <h1>{{ currentPage }}</h1>
     </div>
     <div class="right-section">
       <div class="user-menu" @click="toggleDropdown">
@@ -34,6 +34,14 @@ export default {
       showDropdown: false
     }
   },
+  computed: {
+    currentPage() {
+      const route = this.$route.name;
+      if (route === 'Notifications') return 'Notifications';
+      if (route === 'Schedule') return 'Schedule';
+      return 'Dashboard';
+    }
+  },
   methods: {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown
@@ -59,8 +67,10 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 0.75rem 2rem;
-  background-color: white;
+  background: white;
+  width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  font-family: 'Inter', sans-serif;
 }
 
 .left-section {
@@ -72,7 +82,7 @@ export default {
 .logos {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .logo {
@@ -80,11 +90,12 @@ export default {
   width: auto;
 }
 
-.left-section h1 {
-  font-size: 1.25rem;
-  color: #E91E63;
-  margin: 0;
+h1 {
+  font-size: 1.75rem;
   font-weight: 500;
+  color: #DD385A;
+  margin: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .right-section {
@@ -95,20 +106,20 @@ export default {
 .user-menu {
   display: flex;
   align-items: center;
-  position: relative;
-  cursor: pointer;
-  padding: 0.5rem;
   gap: 0.75rem;
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem;
 }
 
 .user-icon {
-  color: #E91E63;
+  color: #DD385A;
   font-size: 1.1rem;
 }
 
 .username {
+  color: #DD385A;
   font-size: 0.9rem;
-  color: #E91E63;
   font-weight: 500;
 }
 
@@ -133,7 +144,7 @@ export default {
   border: none;
   background: none;
   cursor: pointer;
-  color: #E91E63;
+  color: #DD385A;
   font-size: 0.9rem;
   text-align: left;
   border-radius: 4px;
@@ -141,11 +152,16 @@ export default {
 }
 
 .menu-item:hover {
-  background-color: rgba(233, 30, 99, 0.1);
+  background-color: rgba(221, 56, 90, 0.1);
 }
 
 .menu-item i {
   font-size: 1rem;
-  color: #E91E63;
+  color: #DD385A;
+  margin-right: 8px;
+}
+
+.user-menu:hover {
+  background-color: rgba(221, 56, 90, 0.1);
 }
 </style>

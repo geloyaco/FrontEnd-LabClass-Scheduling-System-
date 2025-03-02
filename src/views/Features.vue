@@ -5,74 +5,74 @@
       <div class="content-wrapper">
         <div class="features-grid">
           <div class="feature-card">
-            <h2>Academic Coordinator</h2>
+            <h2 class="feature-title">Academic Coordinator</h2>
             <ul>
               <li>
-                <i class="fas fa-calendar-plus"></i>
+                <i class="fas fa-calendar-plus feature-icon"></i>
                 Scheduling Creation and Assignment
               </li>
               <li>
-                <i class="fas fa-exclamation-triangle"></i>
+                <i class="fas fa-exclamation-triangle feature-icon"></i>
                 Conflict Detection
               </li>
               <li>
-                <i class="fas fa-chart-line"></i>
+                <i class="fas fa-chart-line feature-icon"></i>
                 Audit Tracking
               </li>
             </ul>
           </div>
 
           <div class="feature-card">
-            <h2>All Users</h2>
+            <h2 class="feature-title">All Users</h2>
             <ul>
               <li>
-                <i class="fas fa-th-large"></i>
+                <i class="fas fa-th-large feature-icon"></i>
                 Centralized Dashboard
               </li>
               <li>
-                <i class="fas fa-search"></i>
+                <i class="fas fa-search feature-icon"></i>
                 Search and Filter
               </li>
               <li>
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell feature-icon"></i>
                 Receive Notifications
               </li>
             </ul>
           </div>
 
           <div class="feature-card">
-            <h2>Dean</h2>
+            <h2 class="feature-title">Dean</h2>
             <ul>
               <li>
-                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-check-circle feature-icon"></i>
                 Schedule Review and Approval
               </li>
               <li>
-                <i class="fas fa-chart-bar"></i>
+                <i class="fas fa-chart-bar feature-icon"></i>
                 Activity Monitoring
               </li>
             </ul>
           </div>
 
           <div class="feature-card">
-            <h2>Faculty/Staff & Students</h2>
+            <h2 class="feature-title">Faculty/Staff & Students</h2>
             <ul>
               <li>
-                <i class="fas fa-calendar-alt"></i>
+                <i class="fas fa-calendar-alt feature-icon"></i>
                 View Assigned Schedules
               </li>
             </ul>
           </div>
 
           <div class="feature-card">
-            <h2>System Administrator</h2>
+            <h2 class="feature-title">System Administrator</h2>
             <ul>
               <li>
-                <i class="fas fa-users-cog"></i>
+                <i class="fas fa-users-cog feature-icon"></i>
                 User Management
               </li>
               <li>
-                <i class="fas fa-shield-alt"></i>
+                <i class="fas fa-shield-alt feature-icon"></i>
                 Access Control
               </li>
             </ul>
@@ -127,10 +127,22 @@ export default {
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.feature-card h2 {
-  color: #E91E63;
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(221, 56, 90, 0.1);
+}
+
+.feature-icon {
+  color: #DD385A;
+  font-size: 1.2rem;
+  width: 24px;
+}
+
+.feature-title {
+  color: #DD385A;
   margin-bottom: 1.5rem;
   font-size: 1.5rem;
 }
@@ -148,12 +160,6 @@ export default {
   margin-bottom: 1rem;
   color: #333;
   font-size: 1rem;
-}
-
-.feature-card i {
-  color: #E91E63;
-  font-size: 1.2rem;
-  width: 24px;
 }
 
 .illustration-section {

@@ -24,16 +24,24 @@
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search...">
               </div>
-              <div class="lab-select">
-                <select>
-                  <option>Select Laboratory</option>
-                  <option>L201</option>
-                  <option>L202</option>
-                  <option>L203</option>
-                  <option>L204</option>
-                  <option>L205</option>
-                  <option>IOT</option>
-                </select>
+              <div class="filter-group">
+                <div class="lab-select">
+                  <select v-model="selectedLab">
+                    <option value="">Select Laboratory</option>
+                    <option v-for="lab in laboratories" :key="lab" :value="lab">{{ lab }}</option>
+                  </select>
+                </div>
+                <div class="section-select">
+                  <select v-model="selectedSection">
+                    <option value="">Select Section</option>
+                    <optgroup label="BSIT">
+                      <option v-for="section in bsitSections" :key="section" :value="section">{{ section }}</option>
+                    </optgroup>
+                    <optgroup label="BSCS">
+                      <option v-for="section in bscsSections" :key="section" :value="section">{{ section }}</option>
+                    </optgroup>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="schedule-container">
@@ -77,6 +85,11 @@ export default {
   data() {
     return {
       selectedDate: new Date(),
+      selectedLab: '',
+      selectedSection: '',
+      laboratories: ['L201', 'L202', 'L203', 'L204', 'L205', 'IOT'],
+      bsitSections: ['BSIT-1A', 'BSIT-1B', 'BSIT-2A', 'BSIT-2B', 'BSIT-3A', 'BSIT-3B', 'BSIT-4A', 'BSIT-4B'],
+      bscsSections: ['BSCS-1A', 'BSCS-2A', 'BSCS-3A', 'BSCS-4A'],
       timeSlots: [
         '7:30', '8:00', '8:30', '9:00', '9:30', '10:00', '10:30', '11:00',
         '11:30', '12:00', '12:30', '13:00', '13:30', '14:00', '14:30',
@@ -112,6 +125,7 @@ export default {
   height: 100vh;
   background-color: #f5f5f5;
   overflow: hidden;
+  font-family: 'Inter', sans-serif;
 }
 
 .main-content {
@@ -144,15 +158,17 @@ export default {
 
 h1 {
   font-size: 2rem;
-  color: #E91E63;
+  color: #DD385A;
   margin: 0;
   font-weight: 500;
+  font-family: 'Inter', sans-serif;
 }
 
 .date {
   color: #666;
   font-size: 0.9rem;
   margin: 0;
+  font-family: 'Inter', sans-serif;
 }
 
 .main-section {
@@ -181,6 +197,12 @@ h1 {
   display: flex;
   gap: 1rem;
   justify-content: flex-end;
+  align-items: center;
+}
+
+.filter-group {
+  display: flex;
+  gap: 1rem;
 }
 
 .search-box {
@@ -193,14 +215,11 @@ h1 {
   padding: 0.5rem 1rem 0.5rem 2rem;
   border: none;
   border-radius: 8px;
-  background: rgba(233, 30, 99, 0.1);
+  background: rgba(221, 56, 90, 0.1);
   outline: none;
   font-size: 0.9rem;
-  color: #E91E63;
-}
-
-.search-box input::placeholder {
-  color: rgba(233, 30, 99, 0.6);
+  color: #DD385A;
+  font-family: 'Inter', sans-serif;
 }
 
 .search-box i {
@@ -208,23 +227,46 @@ h1 {
   left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  color: rgba(233, 30, 99, 0.6);
+  color: rgba(221, 56, 90, 0.6);
   font-size: 0.9rem;
 }
 
-.lab-select select {
-  padding: 0.5rem 2rem 0.5rem 1rem;
+.lab-select select,
+.section-select select {
+  padding: 0.5rem 1rem;
   border: none;
   border-radius: 8px;
-  background: rgba(233, 30, 99, 0.1);
+  background: white;
   outline: none;
-  cursor: pointer;
   font-size: 0.9rem;
-  color: rgba(233, 30, 99, 0.8);
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='rgba(233, 30, 99, 0.6)' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  min-width: 160px;
+}
+
+.lab-select select {
+  color: #DD385A;
+}
+
+.section-select select {
+  min-width: 180px;
+  color: #333;
+}
+
+.section-select optgroup {
+  font-weight: 600;
+  color: #DD385A;
+}
+
+.section-select option {
+  padding: 4px 8px;
+  color: #DD385A;
+}
+
+.lab-select select option:first-child,
+.section-select select option:first-child {
+  color: #666;
 }
 
 .schedule-container {
@@ -242,7 +284,7 @@ h1 {
   flex: 1;
   overflow: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(233, 30, 99, 0.6) rgba(233, 30, 99, 0.1);
+  scrollbar-color: rgba(221, 56, 90, 0.6) rgba(221, 56, 90, 0.1);
 }
 
 .schedule-grid::-webkit-scrollbar {
@@ -251,12 +293,12 @@ h1 {
 }
 
 .schedule-grid::-webkit-scrollbar-track {
-  background: rgba(233, 30, 99, 0.1);
+  background: rgba(221, 56, 90, 0.1);
   border-radius: 4px;
 }
 
 .schedule-grid::-webkit-scrollbar-thumb {
-  background-color: rgba(233, 30, 99, 0.6);
+  background-color: rgba(221, 56, 90, 0.6);
   border-radius: 4px;
 }
 
@@ -279,11 +321,12 @@ h1 {
   text-align: center;
   border-bottom: 1px solid #eee;
   font-weight: 500;
-  color: #E91E63;
+  color: #DD385A;
   background: #f9f9f9;
   position: sticky;
   top: 0;
   z-index: 1;
+  font-family: 'Inter', sans-serif;
 }
 
 .lab-slots {
@@ -301,13 +344,15 @@ h1 {
   height: 60px;
   padding: 0.5rem;
   border-bottom: 1px solid #eee;
-  color: #E91E63;
+  color: #DD385A;
   font-size: 0.8rem;
   display: flex;
   align-items: center;
+  font-family: 'Inter', sans-serif;
 }
 
 .lab-slots .time-slot {
   border-right: 1px solid #eee;
+  font-family: 'Inter', sans-serif;
 }
 </style>

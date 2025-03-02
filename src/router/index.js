@@ -46,7 +46,7 @@ const routes = [
   {
     path: '/schedule',
     name: 'Schedule',
-    component: () => import('../views/Schedule.vue')
+    component: () => import('../views/Acad Coor/Schedule.vue')
   },
   {
     path: '/users',
