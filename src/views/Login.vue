@@ -59,7 +59,7 @@ export default {
   name: 'Login',
   methods: {
     handleLogin() {
-      this.$router.push('/dashboard')
+      this.$router.push('/dashboard-acad-coor')
     }
   }
 }

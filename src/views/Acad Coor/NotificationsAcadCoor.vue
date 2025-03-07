@@ -1,4 +1,4 @@
-// Notifications.vue
+// NotificationsAcadCoor.vue
 <template>
   <div class="dashboard-layout">
     <DashBoardSidebar />
@@ -35,11 +35,11 @@
 </template>
 
 <script>
-import DashBoardSidebar from '../components/DashBoardSidebar.vue'
-import DashBoardTopbar from '../components/DashBoardTopbar.vue'
+import DashBoardSidebar from '../../components/DashBoardSidebarAcadCoor.vue'
+import DashBoardTopbar from '../../components/DashBoardTopbar.vue'
 
 export default {
-  name: 'Notifications',
+  name: 'NotificationsAcadCoor',
   components: {
     DashBoardSidebar,
     DashBoardTopbar

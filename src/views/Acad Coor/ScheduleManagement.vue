@@ -235,11 +235,11 @@
 </template>
 
 <script>
-import DashBoardSidebar from '../../components/DashBoardSidebar.vue'
+import DashBoardSidebar from '../../components/DashBoardSidebarAcadCoor.vue'
 import DashBoardTopbar from '../../components/DashBoardTopbar.vue'
 
 export default {
-  name: 'AcadCoorSchedule',
+  name: 'ScheduleManagement',
   components: {
     DashBoardSidebar,
     DashBoardTopbar

@@ -5,7 +5,6 @@
         <img src="../assets/uic-logo-3.svg" alt="UIC Logo" class="logo" />
         <img src="../assets/CCS-logo.svg" alt="CCS Logo" class="logo" />
       </div>
-      <h1>{{ currentPage }}</h1>
     </div>
     <div class="right-section">
       <div class="user-menu" @click="toggleDropdown">
@@ -34,14 +33,6 @@ export default {
       showDropdown: false
     }
   },
-  computed: {
-    currentPage() {
-      const route = this.$route.name;
-      if (route === 'Notifications') return 'Notifications';
-      if (route === 'Schedule') return 'Schedule';
-      return 'Dashboard';
-    }
-  },
   methods: {
     toggleDropdown() {
       this.showDropdown = !this.showDropdown
@@ -63,39 +54,28 @@ export default {
 
 <style scoped>
 .topbar {
+  background-color: white;
+  padding: 0.75rem 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 2rem;
-  background: white;
-  width: 100%;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  font-family: 'Inter', sans-serif;
 }
 
 .left-section {
   display: flex;
   align-items: center;
-  gap: 2rem;
 }
 
 .logos {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 1.5rem;
 }
 
 .logo {
-  height: 32px;
+  height: 42px;
   width: auto;
-}
-
-h1 {
-  font-size: 1.75rem;
-  font-weight: 500;
-  color: #DD385A;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
 }
 
 .right-section {

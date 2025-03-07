@@ -1,4 +1,4 @@
-// Dashboard.vue
+// DashboardViewer.vue
 <template>
   <div class="dashboard-layout">
     <DashBoardSidebar />
@@ -71,12 +71,12 @@
 </template>
 
 <script>
-import DashBoardSidebar from '../components/DashBoardSidebar.vue'
-import DashBoardTopbar from '../components/DashBoardTopbar.vue'
-import Calendar from '../components/Calendar.vue'
+import DashBoardSidebar from '../../components/DashBoardSideBarViewer.vue'
+import DashBoardTopbar from '../../components/DashBoardTopbar.vue'
+import Calendar from '../../components/Calendar.vue'
 
 export default {
-  name: 'Dashboard',
+  name: 'DashboardViewer',
   components: {
     DashBoardSidebar,
     DashBoardTopbar,

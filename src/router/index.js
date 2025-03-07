@@ -5,7 +5,7 @@ import About from '../views/About.vue';
 import Features from '../views/Features.vue';
 import SignUp from '../views/SignUp.vue';
 import Login from '../views/Login.vue';
-import Dashboard from '../views/Dashboard.vue';
+import DashboardAcadCoor from '../views/Acad Coor/DashboardAcadCoor.vue';
 
 const routes = [
   { 
@@ -33,20 +33,42 @@ const routes = [
     name: 'Login',
     component: Login
   },
+  // Academic Coordinator Routes
   {
-    path: '/dashboard',
-    name: 'Dashboard',
-    component: Dashboard
+    path: '/dashboard-acad-coor',
+    name: 'DashboardAcadCoor',
+    component: DashboardAcadCoor
   },
   {
-    path: '/notifications',
-    name: 'Notifications',
-    component: () => import('../views/Notifications.vue')
+    path: '/notifications-acad-coor',
+    name: 'NotificationsAcadCoor',
+    component: () => import('../views/Acad Coor/NotificationsAcadCoor.vue')
   },
   {
-    path: '/schedule',
-    name: 'Schedule',
-    component: () => import('../views/Acad Coor/Schedule.vue')
+    path: '/schedule-acad-coor',
+    name: 'ScheduleAcadCoor',
+    component: () => import('../views/Acad Coor/ScheduleAcadCoor.vue')
+  },
+  {
+    path: '/schedule-management',
+    name: 'ScheduleManagement',
+    component: () => import('../views/Acad Coor/ScheduleManagement.vue')
+  },
+  // Viewer Routes
+  {
+    path: '/dashboard-viewer',
+    name: 'DashboardViewer',
+    component: () => import('../views/Viewer/DashboardViewer.vue')
+  },
+  {
+    path: '/notifications-viewer',
+    name: 'NotificationsViewer',
+    component: () => import('../views/Viewer/NotificationsViewer.vue')
+  },
+  {
+    path: '/schedule-viewer',
+    name: 'ScheduleViewer',
+    component: () => import('../views/Viewer/ScheduleViewer.vue')
   },
   {
     path: '/users',

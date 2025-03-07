@@ -6,23 +6,31 @@
     </div>
 
     <nav class="nav-links">
-      <router-link to="/dashboard" class="nav-link" :class="{ active: $route.path === '/dashboard' }">
-        <i class="fas fa-home"></i>
+      <router-link to="/dashboard-viewer" class="nav-link" :class="{ active: $route.path === '/dashboard-viewer' }">
+        <div class="icon-container">
+          <i class="fas fa-home"></i>
+        </div>
         <span v-show="isExpanded">Dashboard</span>
       </router-link>
 
-      <router-link to="/notifications" class="nav-link" :class="{ active: $route.path === '/notifications' }">
-        <i class="fas fa-bell"></i>
+      <router-link to="/notifications-viewer" class="nav-link" :class="{ active: $route.path === '/notifications-viewer' }">
+        <div class="icon-container">
+          <i class="fas fa-bell"></i>
+        </div>
         <span v-show="isExpanded">Notifications</span>
       </router-link>
 
-      <router-link to="/schedule" class="nav-link" :class="{ active: $route.path === '/schedule' }">
-        <i class="fas fa-calendar"></i>
+      <router-link to="/schedule-viewer" class="nav-link" :class="{ active: $route.path === '/schedule-viewer' }">
+        <div class="icon-container">
+          <i class="fas fa-calendar"></i>
+        </div>
         <span v-show="isExpanded">Schedule</span>
       </router-link>
 
       <router-link to="/users" class="nav-link" :class="{ active: $route.path === '/users' }">
-        <i class="fas fa-user"></i>
+        <div class="icon-container">
+          <i class="fas fa-user"></i>
+        </div>
         <span v-show="isExpanded">User</span>
       </router-link>
     </nav>
@@ -31,7 +39,7 @@
 
 <script>
 export default {
-  name: 'DashBoardSidebar',
+  name: 'DashBoardSideBarViewer',
   data() {
     return {
       isExpanded: false
@@ -56,10 +64,11 @@ export default {
   position: fixed;
   left: 0;
   top: 0;
-  transition: width 0.3s ease;
+  transition: all 0.3s ease;
   overflow: hidden;
   z-index: 1000;
   font-family: 'Inter', sans-serif;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar.expanded {
@@ -67,11 +76,12 @@ export default {
 }
 
 .logo-section {
-  padding: 2rem 1rem;
+  padding: 1.5rem 1.25rem;
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 1rem;
 }
 
 .logo {
@@ -90,33 +100,43 @@ export default {
 .nav-links {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  padding: 0.5rem 0;
 }
 
 .nav-link {
   display: flex;
   align-items: center;
-  padding: 0.75rem 1rem;
-  color: white;
+  padding: 0.875rem 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
   text-decoration: none;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   white-space: nowrap;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  border-left: 3px solid transparent;
 }
 
 .nav-link:hover, .nav-link.active {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-left-color: white;
+}
+
+.icon-container {
+  width: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav-link i {
-  font-size: 1.25rem;
-  width: 24px;
-  text-align: center;
+  font-size: 1.1rem;
 }
 
 .nav-link span {
-  margin-left: 1.25rem;
+  margin-left: 1rem;
   font-weight: 400;
+  flex: 1;
 }
 </style>
