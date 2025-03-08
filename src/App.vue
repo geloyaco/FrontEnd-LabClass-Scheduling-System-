@@ -9,7 +9,9 @@
       </div>
     </template>
     <template v-else>
-      <router-view />
+      <div class="dashboard-layout">
+        <router-view />
+      </div>
     </template>
   </div>
 </template>
@@ -25,6 +27,9 @@ export default {
       return this.$route.path.startsWith('/dashboard') ||
              this.$route.path.startsWith('/notifications') ||
              this.$route.path.startsWith('/schedule') ||
+             this.$route.path.startsWith('/all-schedules') ||
+             this.$route.path.startsWith('/user-management') ||
+             this.$route.path.startsWith('/account-management') ||
              this.$route.path.startsWith('/users');
     }
   }
@@ -45,6 +50,7 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  background-color: #f5f5f5;
 }
 
 .app-container {
@@ -52,6 +58,7 @@ html, body {
   width: 100vw;
   display: flex;
   overflow: hidden;
+  background-color: #f5f5f5;
 }
 
 .main-content {
@@ -59,5 +66,23 @@ html, body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-width: 0; /* Prevent flex item from overflowing */
+  background-color: #f5f5f5;
+}
+
+/* Dashboard routes specific styles */
+.dashboard-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.dashboard-layout .main-content {
+  flex: 1;
+  margin-left: 70px;
+  width: calc(100vw - 70px);
+  min-width: 0;
 }
 </style>

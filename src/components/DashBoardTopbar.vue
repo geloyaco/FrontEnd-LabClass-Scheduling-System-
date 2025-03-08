@@ -55,11 +55,17 @@ export default {
 <style scoped>
 .topbar {
   background-color: white;
-  padding: 0.75rem 1.5rem;
+  height: 60px;
+  padding: 0 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
 }
 
 .left-section {

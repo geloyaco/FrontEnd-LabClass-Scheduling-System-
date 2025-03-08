@@ -70,10 +70,41 @@ const routes = [
     name: 'ScheduleViewer',
     component: () => import('../views/Viewer/ScheduleViewer.vue')
   },
+  // System Administrator Routes
   {
-    path: '/users',
-    name: 'Users',
-    component: () => import('../views/Users.vue')
+    path: '/dashboard-sysad',
+    name: 'DashboardSysAd',
+    component: () => import('../views/System Admin/DashboardSysAd.vue')
+  },
+  {
+    path: '/notifications-sysad',
+    name: 'NotificationsSysAd',
+    component: () => import('../views/System Admin/NotificationsSysAd.vue')
+  },
+  {
+    path: '/all-schedules-sysad',
+    name: 'AllSchedulesSysAd',
+    component: () => import('../views/System Admin/AllSchedSysAd.vue')
+  },
+  {
+    path: '/schedule-sysad',
+    name: 'ScheduleSysAd',
+    component: () => import('../views/System Admin/ScheduleSysAd.vue')
+  },
+  {
+    path: '/user-management',
+    name: 'UserManagement',
+    component: () => import('../views/System Admin/UserManagement.vue')
+  },
+  {
+    path: '/account-management',
+    name: 'AccountManagement',
+    component: () => import('../views/System Admin/AccountManagement.vue')
+  },
+  {
+    path: '/profile',
+    name: 'Profile',
+    component: () => import('../views/System Admin/UserProfile.vue')
   }
 ];
 

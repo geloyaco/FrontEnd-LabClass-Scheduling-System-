@@ -20,6 +20,10 @@
         <i class="fas fa-user"></i>
         Viewer Login
       </router-link>
+      <router-link to="/dashboard-sysad" class="login-btn sysad-btn">
+        <i class="fas fa-user-shield"></i>
+        System Administrator Login
+      </router-link>
     </div>
   </div>
 </template>
@@ -95,6 +99,10 @@ export default {
 
 .login-btn.viewer-btn {
   background-color: #2C3E50;
+}
+
+.login-btn.sysad-btn {
+  background-color: #1a5f7a;
 }
 
 .login-btn i {

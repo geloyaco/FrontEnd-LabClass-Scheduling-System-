@@ -12,7 +12,6 @@
                 <select v-model="selectedSemester" class="filter-dropdown" @change="handleSemesterChange">
                   <option value="" disabled selected>Select Semester</option>
                   <option value="new" class="new-semester" @click="handleNewSemester">+ New Semester</option>
-                  <option value="summer2025">Summer 2025</option>
                   <option value="2ndsem20252024">2nd Sem 2025-2024</option>
                   <option value="1stsem20242025">1st Sem 2024-2025</option>
                 </select>
