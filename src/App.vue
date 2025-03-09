@@ -30,6 +30,7 @@ export default {
              this.$route.path.startsWith('/all-schedules') ||
              this.$route.path.startsWith('/user-management') ||
              this.$route.path.startsWith('/account-management') ||
+             this.$route.path.startsWith('/user-profile') ||
              this.$route.path.startsWith('/users');
     }
   }

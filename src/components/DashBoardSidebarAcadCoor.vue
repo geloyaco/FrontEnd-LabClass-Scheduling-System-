@@ -38,11 +38,11 @@
         </div>
       </div>
 
-      <router-link to="/users" class="nav-link" :class="{ active: $route.path === '/users' }">
+      <router-link to="/user-profile-acad-coor" class="nav-link" :class="{ active: $route.path === '/user-profile-acad-coor' }">
         <div class="icon-container">
           <i class="fas fa-user"></i>
         </div>
-        <span v-show="isExpanded">User</span>
+        <span v-show="isExpanded">Profile</span>
       </router-link>
     </nav>
   </div>

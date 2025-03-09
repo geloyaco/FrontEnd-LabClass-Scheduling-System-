@@ -27,11 +27,11 @@
         <span v-show="isExpanded">Schedule</span>
       </router-link>
 
-      <router-link to="/users" class="nav-link" :class="{ active: $route.path === '/users' }">
+      <router-link to="/user-profile-viewer" class="nav-link" :class="{ active: $route.path === '/user-profile-viewer' }">
         <div class="icon-container">
           <i class="fas fa-user"></i>
         </div>
-        <span v-show="isExpanded">User</span>
+        <span v-show="isExpanded">Profile</span>
       </router-link>
     </nav>
   </div>

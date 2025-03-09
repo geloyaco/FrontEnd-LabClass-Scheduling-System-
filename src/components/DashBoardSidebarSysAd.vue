@@ -47,16 +47,16 @@
           <i v-show="isExpanded" class="pi pi-angle-right dropdown-icon" :class="{ rotated: isUsersDropdownOpen }"></i>
         </div>
         <div class="dropdown-menu" v-show="isExpanded && isUsersDropdownOpen">
-            <router-link to="/user-management" class="dropdown-item" :class="{ active: $route.path === '/user-management' }">
+            <router-link to="/user-management-sysad" class="dropdown-item" :class="{ active: $route.path === '/user-management-sysad' }">
             <span>User Management</span>
           </router-link>
-          <router-link to="/account-management" class="dropdown-item" :class="{ active: $route.path === '/account-management' }">
+          <router-link to="/account-management-sysad" class="dropdown-item" :class="{ active: $route.path === '/account-management-sysad' }">
             <span>Account Management</span>
           </router-link>
         </div>
       </div>
 
-      <router-link to="/profile-sysad" class="nav-link" :class="{ active: $route.path === '/profile-sysad' }">
+      <router-link to="/user-profile-sysad" class="nav-link" :class="{ active: $route.path === '/user-profile-sysad' }">
         <div class="icon-container">
           <i class="fas fa-user"></i>
         </div>
@@ -81,7 +81,7 @@ export default {
       return this.$route.path === '/schedule-sysad' || this.$route.path === '/all-schedules-sysad'
     },
     isUsersRouteActive() {
-      return this.$route.path === '/user-management' || this.$route.path === '/account-management'
+      return this.$route.path === '/user-management-sysad' || this.$route.path === '/account-management-sysad'
     }
   },
   methods: {

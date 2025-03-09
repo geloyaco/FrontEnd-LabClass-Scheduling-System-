@@ -40,49 +40,51 @@
           </div>
   
           <div class="users-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Full Name</th>
-                  <th>Email</th>
-                  <th>Permissions</th>
-                  <th>Roles</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="user in filteredUsers" :key="user.id">
-                  <td>{{ user.id }}</td>
-                  <td>{{ user.fullName }}</td>
-                  <td>{{ user.email }}</td>
-                  <td>{{ user.permissions }}</td>
-                  <td>
-                    <span class="role-badge" :class="getRoleBadgeClass(user.role)">
-                      {{ user.role }}
-                    </span>
-                  </td>
-                  <td>
-                    <div class="actions">
-                      <button class="action-button" @click="toggleActionMenu(user)">
-                        <i class="fas fa-ellipsis-h"></i>
-                      </button>
-                      <div v-if="selectedUser === user" class="action-menu">
-                        <button @click="showModifyModal(user)">
-                          <i class="fas fa-edit"></i> Modify
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Permissions</th>
+                    <th>Roles</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="user in filteredUsers" :key="user.id">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.fullName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.permissions }}</td>
+                    <td>
+                      <span class="role-badge" :class="getRoleBadgeClass(user.role)">
+                        {{ user.role }}
+                      </span>
+                    </td>
+                    <td>
+                      <div class="actions">
+                        <button class="action-button" @click="toggleActionMenu(user, $event)">
+                          <i class="fas fa-ellipsis-h"></i>
                         </button>
-                        <button @click="showDeleteModal(user)">
-                          <i class="fas fa-trash"></i> Delete
-                        </button>
-                        <button @click="deactivateUser(user)">
-                          <i class="fas fa-ban"></i> Deactivate
-                        </button>
+                        <div v-if="selectedUser === user" class="action-menu" :style="{ top: menuPosition.top, left: menuPosition.left }">
+                          <button @click="showModifyModal(user)">
+                            <i class="fas fa-edit"></i> Modify
+                          </button>
+                          <button @click="showDeleteModal(user)">
+                            <i class="fas fa-trash"></i> Delete
+                          </button>
+                          <button @click="deactivateUser(user)">
+                            <i class="fas fa-ban"></i> Deactivate
+                          </button>
+                        </div>
                       </div>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
@@ -163,6 +165,7 @@
         selectedRole: '',
         selectedPermission: '',
         selectedUser: null,
+        menuPosition: { top: 0, left: 0 },
         showingModifyModal: false,
         showingDeleteModal: false,
         modifyForm: {
@@ -234,8 +237,23 @@
         }
         return classes[role] || ''
       },
-      toggleActionMenu(user) {
-        this.selectedUser = this.selectedUser === user ? null : user
+      toggleActionMenu(user, event) {
+        if (this.selectedUser === user) {
+          this.selectedUser = null;
+          return;
+        }
+        
+        this.selectedUser = user;
+        
+        // Get button position
+        const button = event.target.closest('.action-button');
+        const rect = button.getBoundingClientRect();
+        
+        // Calculate menu position
+        this.menuPosition = {
+          top: rect.bottom + window.scrollY + 'px',
+          left: rect.left + window.scrollX - 110 + 'px' // Adjust 110px to align menu properly
+        };
       },
       showModifyModal(user) {
         this.selectedUser = user
@@ -325,11 +343,16 @@
     width: 100%;
     padding: 8px 16px;
     padding-left: 40px;
-    border: 1px solid #ddd;
+    border: 1px solid #DD385A;
     border-radius: 8px;
     font-size: 14px;
   }
-  
+
+  .search-box input:focus {
+    border-color: #DD385A;
+    outline: none;
+  }
+
   .search-box i {
     position: absolute;
     left: 12px;
@@ -345,35 +368,125 @@
   
   .filter-dropdown select {
     padding: 8px 16px;
-    border: 1px solid #ddd;
+    border: 1px solid #DD385A;
     border-radius: 8px;
     font-size: 14px;
     min-width: 150px;
+    cursor: pointer;
+    color: #666;
+    font-weight: normal;
     background-color: white;
+  }
+
+  .filter-dropdown select:focus {
+    border-color: #DD385A;
+    outline: none;
+  }
+
+  .filter-dropdown select option[value=""] {
+    color: rgba(102, 102, 102, 0.6);
+  }
+
+  .filter-dropdown select option:not([value=""]) {
+    color: #DD385A;
+    font-weight: 500;
+    background-color: white;
+  }
+
+  .filter-dropdown select option:checked {
+    background-color: #DD385A;
+    color: white;
+  }
+
+  .filter-dropdown select option:hover {
+    background-color: rgba(221, 56, 90, 0.1);
   }
   
   .users-table {
     background: white;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    max-height: calc(100vh - 250px); /* Adjust based on your header and filters height */
     overflow: hidden;
   }
   
-  table {
+  .table-container {
+    overflow-y: auto;
+    max-height: 100%;
+    position: relative;
+  }
+
+  /* Custom scrollbar styling */
+  .table-container::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .table-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+
+  .table-container::-webkit-scrollbar-thumb {
+    background: #DD385A;
+    border-radius: 4px;
+  }
+
+  .table-container::-webkit-scrollbar-thumb:hover {
+    background: #c62f4d;
+  }
+
+  .users-table table {
     width: 100%;
     border-collapse: collapse;
   }
-  
-  th, td {
+
+  .users-table thead {
+    position: sticky;
+    top: 0;
+    background-color: #f9f9f9;
+    z-index: 1;
+  }
+
+  .users-table th, .users-table td {
     padding: 16px;
     text-align: left;
     border-bottom: 1px solid #eee;
   }
   
-  th {
+  .users-table th {
     font-weight: 600;
-    color: #666;
+    color: #DD385A;
     background-color: #f9f9f9;
+  }
+  
+  .users-table td {
+    padding: 12px 16px;
+    color: #666; /* Default color for all cells */
+  }
+
+  .users-table td:nth-child(1) { /* ID */
+    font-family: 'Inter', sans-serif;
+    color: #666;
+  }
+
+  .users-table td:nth-child(2) { /* Full Name */
+    color: #DD385A;
+    font-weight: 500;
+  }
+
+  .users-table td:nth-child(3) { /* Email */
+    font-family: 'Inter', sans-serif;
+    color: #666;
+  }
+
+  .users-table td:nth-child(4) { /* Permissions */
+    color: #DD385A;
+    font-weight: 500;
+  }
+  
+  .users-table td:nth-child(5) { /* Roles */
+    color: #666;
   }
   
   .role-badge {
@@ -417,16 +530,19 @@
     border: none;
     cursor: pointer;
     padding: 4px 8px;
+    color: #DD385A;
+  }
+  
+  .action-button i {
+    color: #DD385A;
   }
   
   .action-menu {
-    position: absolute;
-    right: 0;
-    top: 100%;
+    position: fixed;
     background: white;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
     min-width: 150px;
   }
   
@@ -440,20 +556,26 @@
     background: none;
     cursor: pointer;
     text-align: left;
-    color: #333;
+    color: #DD385A;
+  }
+  
+  .action-menu button i {
+    margin-right: 8px;
+    color: #DD385A;
   }
   
   .action-menu button:hover {
-    background-color: #f5f5f5;
+    color: #DD385A;
+    background-color: rgba(221, 56, 90, 0.1);
   }
   
   .modal {
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -462,50 +584,73 @@
   
   .modal-content {
     background: white;
-    border-radius: 12px;
+    border-radius: 8px;
     width: 100%;
-    max-width: 500px;
-    padding: 24px;
+    max-width: 400px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
   
   .modal-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid rgba(221, 56, 90, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
   }
   
   .modal-header h2 {
+    color: #DD385A;
     font-size: 20px;
-    font-weight: 600;
-    color: #333;
+    font-weight: 500;
+    margin: 0;
   }
   
   .close-button {
     background: none;
     border: none;
+    color: #DD385A;
     cursor: pointer;
-    font-size: 20px;
-    color: #666;
+    font-size: 18px;
+    padding: 4px;
+  }
+  
+  .modal-body {
+    padding: 24px;
   }
   
   .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 20px;
   }
   
   .form-group label {
     display: block;
     margin-bottom: 8px;
+    color: #DD385A;
     font-weight: 500;
-    color: #333;
   }
   
   .form-group select {
     width: 100%;
-    padding: 8px 16px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    padding: 8px 12px;
+    border: 1px solid rgba(221, 56, 90, 0.2);
+    border-radius: 6px;
     font-size: 14px;
+    color: #666;
+    background-color: white;
+  }
+  
+  .form-group select:focus {
+    outline: none;
+    border-color: #DD385A;
+  }
+  
+  .form-group select option {
+    color: #DD385A;
+    font-weight: 500;
+  }
+  
+  .form-group select option[value=""] {
+    color: rgba(102, 102, 102, 0.6);
   }
   
   .confirm-button {
@@ -514,29 +659,57 @@
     background-color: #DD385A;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    margin-top: 16px;
+    transition: background-color 0.2s;
+  }
+  
+  .confirm-button:hover {
+    background-color: #c62f4d;
   }
   
   .warning-box {
-    background-color: #FFF3F3;
-    border: 1px solid #FFCDD2;
-    border-radius: 8px;
+    background-color: rgba(221, 56, 90, 0.05);
+    border: 1px solid rgba(221, 56, 90, 0.2);
+    border-radius: 6px;
     padding: 16px;
     margin: 16px 0;
-    color: #D32F2F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
   .warning-box i {
+    color: #DD385A;
     font-size: 24px;
     margin-bottom: 8px;
   }
   
+  .warning-box p {
+    margin: 4px 0;
+    color: #666;
+  }
+  
+  .warning-box p:first-of-type {
+    color: #DD385A;
+    font-weight: 500;
+    font-size: 16px;
+  }
+  
+  .delete-message {
+    font-size: 16px;
+    color: #DD385A;
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 500;
+  }
+  
   .modal-actions {
     display: flex;
-    gap: 16px;
+    gap: 12px;
     margin-top: 24px;
   }
   
@@ -546,9 +719,15 @@
     background-color: #DD385A;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .delete-button:hover {
+    background-color: #c62f4d;
   }
   
   .cancel-button {
@@ -557,14 +736,14 @@
     background-color: #f5f5f5;
     color: #666;
     border: none;
-    border-radius: 8px;
+    border-radius: 6px;
+    font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.2s;
   }
   
-  .delete-message {
-    font-size: 16px;
-    color: #333;
-    margin-bottom: 16px;
+  .cancel-button:hover {
+    background-color: #ebebeb;
   }
   </style>

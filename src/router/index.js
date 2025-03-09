@@ -54,6 +54,11 @@ const routes = [
     name: 'ScheduleManagement',
     component: () => import('../views/Acad Coor/ScheduleManagement.vue')
   },
+  {
+    path: '/user-profile-acad-coor',
+    name: 'UserProfileAcadCoor',
+    component: () => import('../views/Acad Coor/UserProfileAcadCoor.vue')
+  },
   // Viewer Routes
   {
     path: '/dashboard-viewer',
@@ -69,6 +74,11 @@ const routes = [
     path: '/schedule-viewer',
     name: 'ScheduleViewer',
     component: () => import('../views/Viewer/ScheduleViewer.vue')
+  },
+  {
+    path: '/user-profile-viewer',
+    name: 'UserProfileViewer',
+    component: () => import('../views/Viewer/UserProfileViewer.vue')
   },
   // System Administrator Routes
   {
@@ -92,19 +102,19 @@ const routes = [
     component: () => import('../views/System Admin/ScheduleSysAd.vue')
   },
   {
-    path: '/user-management',
-    name: 'UserManagement',
+    path: '/user-management-sysad',
+    name: 'UserManagementSysAd',
     component: () => import('../views/System Admin/UserManagement.vue')
   },
   {
-    path: '/account-management',
-    name: 'AccountManagement',
+    path: '/account-management-sysad',
+    name: 'AccountManagementSysAd',
     component: () => import('../views/System Admin/AccountManagement.vue')
   },
   {
-    path: '/profile',
-    name: 'Profile',
-    component: () => import('../views/System Admin/UserProfile.vue')
+    path: '/user-profile-sysad',
+    name: 'UserProfileSysAd',
+    component: () => import('../views/System Admin/UserProfileSysAd.vue')
   }
 ];
 
